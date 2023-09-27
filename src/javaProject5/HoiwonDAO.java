@@ -8,15 +8,15 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class HoiwonDAO {
-	Connection conn	=	null;
+	Connection conn	=	null;	
 	PreparedStatement pstmt	=	null;
 	ResultSet rs	=	null;
 	
-	String sql	=	"";
+	String sql	=	"";	
 	HoiwonVO vo	=	null;
 	
  public  HoiwonDAO() {
-	 String url = "jdbc:mysql://localhost:3306/javaProject";
+	 String url = "jdbc:mysql://localhost:3306/javaProject5";
 		String user = "root";
 		String password = "1234";
 		try {
@@ -61,9 +61,9 @@ public class HoiwonDAO {
 		 pstmt.setString(1, name);
 		 rs	=	pstmt.executeQuery();
 	 	 
-		 if(rs.next()) {
+		 if(rs.next()) {	
 			 vo.setIdx(rs.getInt("idx"));
-			 vo.setid("id");
+			 vo.setId("id");
 			 vo.setPw("pw");
 			 vo.setPhonenumber(rs.getInt("phonenumber"));
 			 vo.setAddress("address");
@@ -148,13 +148,14 @@ public class HoiwonDAO {
 						vo.add(rs.getInt("phonenumber"));
 						vo.add(rs.getInt("address"));
 						
+						vData.add(vo);
 					}
-				} catch ( e) {
+				} catch (Exception e) {
 					// TODO: handle exception
 				}
+ 				
+ 				return vData;
  			}
-
-
 
 
 

@@ -50,7 +50,8 @@ public class T01 extends JFrame { // JFrame이 현재 extends되어 있으므로
 		setTitle("스윙연습");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 사용자가 이 프레임의 오른쪽 상단의 x 버튼을 클릭하여 메인프레임을 닫을 때, 프로그램 또한 안정적으로 종료 (위 코드를 사용하지 않고 우측 상단에 x 클릭시 우리 눈에는 닫힌 것처럼 보이지만 실제로는 JVM 메모리에 남아 프로세스가 가동중인 상태, 메모리 과부하 방지) 
 		setBounds(100, 100, 800, 600);
-		contentPane = new JPanel(); // ContentPane :   일반적인 컴포넌트(ex : button) 들을 가질 수 있는 패널
+		contentPane = 
+				new JPanel(); // ContentPane :   일반적인 컴포넌트(ex : button) 들을 가질 수 있는 패널
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5)); //setBorder : 사용자가 여백을 주고 싶을 때 사용하는 코드 , JLable이나 JButton등 판넬에도 사용 가능, 다만 JFrame에는 사용 불가능
 
 		setContentPane(contentPane);
@@ -99,25 +100,52 @@ public class T01 extends JFrame { // JFrame이 현재 extends되어 있으므로
 		contentPane.add(txtName);
 		
 		txtSosok = new JTextField();
-		txtSosok.setFont(new Font("굴림", Font.PLAIN, 18)); // Font : 글자 크기 지정 
+		txtSosok.setFont(new Font("굴림", Font.PLAIN, 18)); 
 		txtSosok.setColumns(10);
-		txtSosok.setBounds(277, 399, 313, 40);	// Bounds : 컴포넌트(예 : 버튼 등) 를 배치할 때 사용되는 메소드 
+		txtSosok.setBounds(277, 399, 313, 40);	 
 		contentPane.add(txtSosok);
 		
+		txtPwd = new JPasswordField();
+		txtPwd.setFont(new Font("굴림", Font.PLAIN, 18));
+		txtPwd.setBounds(277, 270, 313, 40);
+		contentPane.add(txtPwd);
+		
+		JLabel lblNewLabel_1_4 = new JLabel("성 명");
+		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_4.setFont(new Font("굴림", Font.PLAIN, 18));
+		lblNewLabel_1_4.setBounds(103, 62, 120, 40);
+		contentPane.add(lblNewLabel_1_4);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("굴림", Font.PLAIN, 18));
+		textField.setColumns(10);
+		textField.setBounds(277, 62, 313, 40);
+		contentPane.add(textField);
+		
+		JLabel lblNewLabel_1_5 = new JLabel("비 밀 번 호");
+		lblNewLabel_1_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_5.setFont(new Font("굴림", Font.PLAIN, 18));
+		lblNewLabel_1_5.setBounds(103, 208, 120, 40);
+		contentPane.add(lblNewLabel_1_5);
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("굴림", Font.PLAIN, 18));
+		textField_1.setColumns(10);
+		textField_1.setBounds(277, 137, 313, 40);
+		contentPane.add(textField_1);
+		
+		/* ==============*/
+		
 		// 회원가입버튼												
-		btnInput = new JButton("회원가입"); // Action 타입의 Event e는 인터페이스인 ActionListener만 가짐, 컴포넌트 : Button, List, TextField, Menu, MenuItem, CheckboxMenuItem, PopupMenu , 컴포넌트에 행위 추가 , 컴포넌트에 이벤트 처리 객체를 등록
-		btnInput.addActionListener(new ActionListener() { // Action : 마우스 클릭이나 키보드의 엔터 키를 누르거나 메뉴에서 아이템(List나 Choice 등과 같이 아이템을 가지는 객체의 선택된 아이템에 변화가 있을 때)을 선택했을 때 이벤트 수행 
-		private JLabel txtPhonenumber;
-
-		// ActionListener 인터페이스 : 액션 이벤트를 받기 위한 Listener 인터페이스
+		btnInput = new JButton("회원가입"); 
+		btnInput.addActionListener(new ActionListener() { 
 			
-			public void actionPerformed(ActionEvent e) { // 추상 메소드 actionPerformed : Action이 발생하면 호출됨 // 대상_객체.addActionListener(Event_구현_객체)
+			public void actionPerformed(ActionEvent e) { 
 				String str = "";
 				str += "아이디 : " + txtMid.getText() + "\n";
 				str += "비밀번호 : " + txtPwd.getText() + "\n";
 				str += "성 명 : " + txtName.getText() + "\n";
-				str += "핸드폰 번호 : " + txtPhonenumber.getText();
-				
+				str += "소 속 : " + txtSosok.getText();
 				
 				JOptionPane.showMessageDialog(null, str);
 			}
@@ -152,33 +180,5 @@ public class T01 extends JFrame { // JFrame이 현재 extends되어 있으므로
 		btnClose.setBounds(548, 488, 150, 40);
 		contentPane.add(btnClose);
 		
-		txtPwd = new JPasswordField();
-		txtPwd.setFont(new Font("굴림", Font.PLAIN, 18));
-		txtPwd.setBounds(277, 270, 313, 40);
-		contentPane.add(txtPwd);
-		
-		JLabel lblNewLabel_1_4 = new JLabel("성 명");
-		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_4.setFont(new Font("굴림", Font.PLAIN, 18));
-		lblNewLabel_1_4.setBounds(103, 62, 120, 40);
-		contentPane.add(lblNewLabel_1_4);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("굴림", Font.PLAIN, 18));
-		textField.setColumns(10);
-		textField.setBounds(277, 62, 313, 40);
-		contentPane.add(textField);
-		
-		JLabel lblNewLabel_1_5 = new JLabel("비 밀 번 호");
-		lblNewLabel_1_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_5.setFont(new Font("굴림", Font.PLAIN, 18));
-		lblNewLabel_1_5.setBounds(103, 208, 120, 40);
-		contentPane.add(lblNewLabel_1_5);
-		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("굴림", Font.PLAIN, 18));
-		textField_1.setColumns(10);
-		textField_1.setBounds(277, 137, 313, 40);
-		contentPane.add(textField_1);
 	}
 }

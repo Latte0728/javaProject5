@@ -1,34 +1,35 @@
 package javaProject5;
 
-import javax.swing.ButtonGroup;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.Font;
+import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class HoiwonInput extends JFrame {
 	private JPanel contentPane;
-	private JTextField txtName;
-	private JTextField txtAge;
-	private ButtonGroup buttonGroup = new ButtonGroup();
-	private JButton btnInput, btnReset, btnClose;
+//	private JTextField txtName;
+//	private JTextField txtAge;
+//	private ButtonGroup buttonGroup = new ButtonGroup();
+	private JButton btnInput;
 	
 	HoiwonDAO dao	=	new HoiwonDAO();
 	HoiwonVO vo = null;
 	
 	int res = 0;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField txtName;
+	private JTextField txtId;
+	private JTextField txtPwd;
+	private JTextField txtpwd1;
+	private JTextField txtphone;
+	private JTextField txtemail;
 	
 	public HoiwonInput() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,10 +59,10 @@ public class HoiwonInput extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JButton btnNewButton = new JButton("회 원 가 입");
-		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 18));
-		btnNewButton.setBounds(216, 10, 389, 41);
-		panel_1.add(btnNewButton);
+		btnInput = new JButton("회 원 가 입");
+		btnInput.setFont(new Font("굴림", Font.PLAIN, 18));
+		btnInput.setBounds(216, 10, 389, 41);
+		panel_1.add(btnInput);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(0, 62, 784, 441);
@@ -103,37 +104,52 @@ public class HoiwonInput extends JFrame {
 		lblNewLabel_5.setBounds(221, 348, 154, 41);
 		panel_2.add(lblNewLabel_5);
 		
-		textField = new JTextField();
-		textField.setBounds(442, 41, 173, 21);
-		panel_2.add(textField);
-		textField.setColumns(10);
+		txtName = new JTextField();
+		txtName.setBounds(442, 41, 173, 21);
+		panel_2.add(txtName);
+		txtName.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(442, 90, 173, 21);
-		panel_2.add(textField_1);
+		txtId = new JTextField();
+		txtId.setColumns(10);
+		txtId.setBounds(442, 90, 173, 21);
+		panel_2.add(txtId);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(442, 151, 173, 21);
-		panel_2.add(textField_2);
+		txtPwd = new JTextField();
+		txtPwd.setColumns(10);
+		txtPwd.setBounds(442, 151, 173, 21);
+		panel_2.add(txtPwd);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(442, 215, 173, 21);
-		panel_2.add(textField_3);
+		txtpwd1 = new JTextField();
+		txtpwd1.setColumns(10);
+		txtpwd1.setBounds(442, 215, 173, 21);
+		panel_2.add(txtpwd1);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(442, 281, 173, 21);
-		panel_2.add(textField_4);
+		txtphone = new JTextField();
+		txtphone.setColumns(10);
+		txtphone.setBounds(442, 281, 173, 21);
+		panel_2.add(txtphone);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(442, 359, 173, 21);
-		panel_2.add(textField_5);
+		txtemail = new JTextField();
+		txtemail.setColumns(10);
+		txtemail.setBounds(442, 359, 173, 21);
+		panel_2.add(txtemail);
 
-	
-	
+		/*------------------------------------------------------------------*/
+		
+		// 회원가입
+		btnInput.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name = txtName.getText();
+				String id = txtId.getText();
+				String pwd = txtPwd.getText();
+				String pwd1	=	txtpwd1.getText();
+				String phone	=	txtphone.getText();
+				String email	=	txtemail.getText();
+				
+				
+				
+				
+			}
+		});
 	}
 }

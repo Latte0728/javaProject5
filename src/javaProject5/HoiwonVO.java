@@ -6,19 +6,18 @@ public class HoiwonVO {
 	private String pw;
 	private int phonenumber;
 	private String address;
+	private String name;
 	public int getIdx() {
 		return idx;
-	}
+	}	
 	public void setIdx(int idx) {
 		this.idx = idx;
 	}
 	public String getId() {
 		return id;
 	}
-	
-	public void setid(String id) {
+	public void setId(String id) {
 		this.id = id;
-		
 	}
 	public String getPw() {
 		return pw;
@@ -38,9 +37,17 @@ public class HoiwonVO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	@Override
 	public String toString() {
 		return "HoiwonVO [idx=" + idx + ", id=" + id + ", pw=" + pw + ", phonenumber=" + phonenumber + ", address="
-				+ address + "]";
+				+ address + ", name=" + name + "]";
 	}
+
+	
 }
