@@ -71,7 +71,7 @@ public class HoiwonInput extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("회원 정보 입력");
 		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(10, 0, 784, 37);
+		lblNewLabel_1.setBounds(12, 10, 784, 37);
 		panel_2.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("성 명");

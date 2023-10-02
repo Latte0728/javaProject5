@@ -138,6 +138,8 @@ public class T02Login1 extends JFrame {
 		JButton btnNewButton_2 = new JButton("아이디 찾기");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
 				//new 아이디 찾는 페이지 
 			}
 		});
@@ -147,6 +149,8 @@ public class T02Login1 extends JFrame {
 		JButton btnNewButton_3 = new JButton("비밀번호 찾기");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
 				//new 비번 찾는 페이지 
 			}
 		});
@@ -164,8 +168,10 @@ public class T02Login1 extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				String id = "txtMid"; 
 				String password = "txtPwd";
+				
 			}
 		});
 		

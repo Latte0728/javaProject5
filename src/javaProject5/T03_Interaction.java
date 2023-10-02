@@ -14,12 +14,18 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollBar;
+import java.awt.Font;
 
 public class T03_Interaction extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -49,63 +55,87 @@ public class T03_Interaction extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel1 = new JPanel();
-		panel1.setBounds(35, 67, 327, 52);
-		panel1.setBackground(new Color(0, 128, 255));
-		contentPane.add(panel1);
-		panel1.setLayout(null);
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBackground(new Color(0, 128, 255));
+		panel.setBounds(0, 0, 884, 54);
+		contentPane.add(panel);
 		
-		JLabel lblNewLabel = new JLabel("제품명/성분명");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(12, 10, 103, 32);
-		panel1.add(lblNewLabel);
+		JLabel lblNewLabel_2 = new JLabel("의약품 상세 검색");
+		lblNewLabel_2.setForeground(Color.WHITE);
+		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 16));
+		lblNewLabel_2.setBounds(0, 0, 413, 54);
+		panel.add(lblNewLabel_2);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 54, 884, 467);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("약물 정보 입력");
+		lblNewLabel_1.setForeground(new Color(0, 0, 255));
+		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 16));
+		lblNewLabel_1.setBounds(0, 10, 128, 36);
+		panel_1.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel = new JLabel("제 품 명");
+		lblNewLabel.setFont(new Font("굴림", Font.PLAIN, 15));
+		lblNewLabel.setBounds(22, 60, 106, 43);
+		panel_1.add(lblNewLabel);
+		
+		JLabel lblNewLabel_3 = new JLabel("성 분 명");
+		lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 15));
+		lblNewLabel_3.setBounds(22, 212, 106, 43);
+		panel_1.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("회 사 명");
+		lblNewLabel_4.setFont(new Font("굴림", Font.PLAIN, 15));
+		lblNewLabel_4.setBounds(492, 60, 106, 43);
+		panel_1.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_4_1 = new JLabel("효능 및 효과");
+		lblNewLabel_4_1.setFont(new Font("굴림", Font.PLAIN, 15));
+		lblNewLabel_4_1.setBounds(492, 212, 106, 43);
+		panel_1.add(lblNewLabel_4_1);
 		
 		textField = new JTextField();
-		textField.setBounds(96, 16, 116, 21);
-		panel1.add(textField);
+		textField.setBounds(140, 71, 200, 21);
+		panel_1.add(textField);
 		textField.setColumns(10);
-		
-		JButton btnNewButton = new JButton("검 색");
-		btnNewButton.setBounds(224, 15, 97, 23);
-		panel1.add(btnNewButton);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(35, 117, 327, 267);
-		contentPane.add(scrollPane);
-		
-		JTextArea textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
-		
-		JPanel panel1_1 = new JPanel();
-		panel1_1.setLayout(null);
-		panel1_1.setBackground(new Color(0, 128, 255));
-		panel1_1.setBounds(521, 67, 327, 52);
-		contentPane.add(panel1_1);
-		
-		JLabel lblNewLabel_1 = new JLabel("선택 목록(총 1건)");
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setBounds(12, 10, 103, 32);
-		panel1_1.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(132, 16, 80, 21);
-		panel1_1.add(textField_1);
+		textField_1.setBounds(140, 223, 200, 21);
+		panel_1.add(textField_1);
 		
-		JButton btnX = new JButton("전체 삭제 x");
-		btnX.setBounds(224, 15, 97, 23);
-		panel1_1.add(btnX);
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(656, 71, 200, 21);
+		panel_1.add(textField_2);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(521, 117, 327, 267);
-		contentPane.add(scrollPane_1);
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(656, 223, 200, 21);
+		panel_1.add(textField_3);
 		
-		JTextArea textArea_1 = new JTextArea();
-		scrollPane_1.setViewportView(textArea_1);
+		JButton btnNewButton = new JButton("검 색");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			
+			}
+		});
+		btnNewButton.setBounds(331, 379, 97, 23);
+		panel_1.add(btnNewButton);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"ㅏ,", "ㅏ,", "ㅏ,", "ㅏ"}));
-		comboBox.setBounds(35, 10, 327, 36);
-		contentPane.add(comboBox);
+		JButton btnNewButton_1 = new JButton("재 입 력");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			
+			}
+		});
+		btnNewButton_1.setBounds(453, 379, 97, 23);
+		panel_1.add(btnNewButton_1);
 	}
 }

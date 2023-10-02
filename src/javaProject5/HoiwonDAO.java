@@ -141,7 +141,7 @@ public class HoiwonDAO {
 					rs	=	pstmt.executeQuery();
 					
 					while(rs.next()) {
-						Vector vo	=	new Vector<>();
+						Vector<Object> vo	=	new Vector<>();
 						vo.add(rs.getInt("idx"));
 						vo.add(rs.getString("id"));
 						vo.add(rs.getString("pw"));
