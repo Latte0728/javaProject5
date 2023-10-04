@@ -7,18 +7,19 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
-public class HoiwonInput extends JFrame {
+public class Membership extends JFrame {
 	private JPanel contentPane;
 //	private JTextField txtName;
 //	private JTextField txtAge;
 //	private ButtonGroup buttonGroup = new ButtonGroup();
-	private JButton btnInput;
+	private JButton btnIn;
 	
 	HoiwonDAO dao	=	new HoiwonDAO();
 	HoiwonVO vo = null;
@@ -27,11 +28,10 @@ public class HoiwonInput extends JFrame {
 	private JTextField txtName;
 	private JTextField txtId;
 	private JTextField txtPwd;
-	private JTextField txtpwd1;
 	private JTextField txtphone;
 	private JTextField txtemail;
 	
-	public HoiwonInput() {
+	public Membership() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800, 600);
 		contentPane = new JPanel();
@@ -59,10 +59,10 @@ public class HoiwonInput extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		btnInput = new JButton("회 원 가 입");
-		btnInput.setFont(new Font("굴림", Font.PLAIN, 18));
-		btnInput.setBounds(216, 10, 389, 41);
-		panel_1.add(btnInput);
+		btnIn = new JButton("회 원 가 입");
+		btnIn.setFont(new Font("굴림", Font.PLAIN, 18));
+		btnIn.setBounds(216, 10, 389, 41);
+		panel_1.add(btnIn);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(0, 62, 784, 441);
@@ -74,34 +74,29 @@ public class HoiwonInput extends JFrame {
 		lblNewLabel_1.setBounds(12, 10, 784, 37);
 		panel_2.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("성 명");
-		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 18));
-		lblNewLabel_2.setBounds(221, 30, 70, 40);
-		panel_2.add(lblNewLabel_2);
+		JLabel lblName = new JLabel("성 명");
+		lblName.setFont(new Font("굴림", Font.PLAIN, 18));
+		lblName.setBounds(221, 30, 70, 40);
+		panel_2.add(lblName);
 		
-		JLabel lblNewLabel_3 = new JLabel("아이디");
-		lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 18));
-		lblNewLabel_3.setBounds(221, 79, 250, 40);
-		panel_2.add(lblNewLabel_3);
+		JLabel lblId = new JLabel("아이디");
+		lblId.setFont(new Font("굴림", Font.PLAIN, 18));
+		lblId.setBounds(221, 79, 250, 40);
+		panel_2.add(lblId);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("비 밀 번 호");
-		lblNewLabel_3_1.setFont(new Font("굴림", Font.PLAIN, 18));
-		lblNewLabel_3_1.setBounds(221, 142, 153, 36);
-		panel_2.add(lblNewLabel_3_1);
-		
-		JLabel lblNewLabel_3_1_1 = new JLabel("비 밀 번 호 확 인");
-		lblNewLabel_3_1_1.setFont(new Font("굴림", Font.PLAIN, 18));
-		lblNewLabel_3_1_1.setBounds(221, 206, 153, 36);
-		panel_2.add(lblNewLabel_3_1_1);
+		JLabel lblPw = new JLabel("비 밀 번 호");
+		lblPw.setFont(new Font("굴림", Font.PLAIN, 18));
+		lblPw.setBounds(221, 142, 153, 36);
+		panel_2.add(lblPw);
 		
 		JLabel lblNewLabel_4 = new JLabel("휴 대 폰 번 호");
 		lblNewLabel_4.setFont(new Font("굴림", Font.PLAIN, 18));
-		lblNewLabel_4.setBounds(221, 272, 187, 36);
+		lblNewLabel_4.setBounds(221, 215, 187, 36);
 		panel_2.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("이 메 일");
 		lblNewLabel_5.setFont(new Font("굴림", Font.PLAIN, 18));
-		lblNewLabel_5.setBounds(221, 348, 154, 41);
+		lblNewLabel_5.setBounds(220, 279, 154, 41);
 		panel_2.add(lblNewLabel_5);
 		
 		txtName = new JTextField();
@@ -119,34 +114,44 @@ public class HoiwonInput extends JFrame {
 		txtPwd.setBounds(442, 151, 173, 21);
 		panel_2.add(txtPwd);
 		
-		txtpwd1 = new JTextField();
-		txtpwd1.setColumns(10);
-		txtpwd1.setBounds(442, 215, 173, 21);
-		panel_2.add(txtpwd1);
-		
 		txtphone = new JTextField();
 		txtphone.setColumns(10);
-		txtphone.setBounds(442, 281, 173, 21);
+		txtphone.setBounds(442, 224, 173, 21);
 		panel_2.add(txtphone);
 		
 		txtemail = new JTextField();
 		txtemail.setColumns(10);
-		txtemail.setBounds(442, 359, 173, 21);
+		txtemail.setBounds(442, 290, 173, 21);
 		panel_2.add(txtemail);
 
 		/*------------------------------------------------------------------*/
 		
 		// 회원가입
-		btnInput.addActionListener(new ActionListener() {
+		btnIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = txtName.getText();
 				String id = txtId.getText();
 				String pwd = txtPwd.getText();
-				String pwd1	=	txtpwd1.getText();
 				String phone	=	txtphone.getText();
 				String email	=	txtemail.getText();
+				HoiwonVO vo = dao.getIdSearch(id);	
+				if(vo.getName() == null) {
+					vo = new HoiwonVO();
+					vo.setName(name);
+					vo.setId(id);
+					vo.setPw(pwd);
+					vo.setAddress(email);
+					vo.setPhonenumber(phone);
+				}
+				else JOptionPane.showMessageDialog(null, "중복되는 아이디입니다");
+				dispose();
 				
-				
+				res = dao.setHoiwonInput(vo);
+				if(res == 1) {
+					JOptionPane.showMessageDialog(null, "회원가입 성공. ");
+				} else {
+					JOptionPane.showMessageDialog(null, "회원가입 실패. ");
+				}
 				
 				
 			}

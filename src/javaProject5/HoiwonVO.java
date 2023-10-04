@@ -4,9 +4,10 @@ public class HoiwonVO {
 	private int idx;
 	private	String id;
 	private String pw;
-	private int phonenumber;
+	private String phonenumber;
 	private String address;
 	private String name;
+	
 	public int getIdx() {
 		return idx;
 	}	
@@ -25,10 +26,10 @@ public class HoiwonVO {
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
-	public int getPhonenumber() {
+	public String getPhonenumber() {
 		return phonenumber;
 	}
-	public void setPhonenumber(int phonenumber) {
+	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
 	public String getAddress() {
@@ -48,6 +49,7 @@ public class HoiwonVO {
 		return "HoiwonVO [idx=" + idx + ", id=" + id + ", pw=" + pw + ", phonenumber=" + phonenumber + ", address="
 				+ address + ", name=" + name + "]";
 	}
+	
 
 	
 }

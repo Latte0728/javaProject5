@@ -41,7 +41,6 @@ public class HoiwonDAO {
 	 try {
 		 if(pstmt != null) pstmt.close();
 	 } catch (Exception e) {}
-	 pstmtClose();
  }
  
  // rsClose()
@@ -53,40 +52,41 @@ public class HoiwonDAO {
  }
  
  // 회원명 검색(회원 중복 처리)
- public HoiwonVO getNameSearch(String name) {
+ public HoiwonVO getIdSearch(String id) {
 	 vo	=	new HoiwonVO();
 	 try {
-		 sql	=	"select * from hoiwon where name = ?";
+		 sql	=	"select * from hoiwon where id = ?";
 		 pstmt	=	conn.prepareStatement(sql);
-		 pstmt.setString(1, name);
+		 pstmt.setString(1, id);
 		 rs	=	pstmt.executeQuery();
 	 	 
 		 if(rs.next()) {	
 			 vo.setIdx(rs.getInt("idx"));
-			 vo.setId("id");
-			 vo.setPw("pw");
-			 vo.setPhonenumber(rs.getInt("phonenumber"));
-			 vo.setAddress("address");
-		 }
-	 }	 catch (SQLException e) {
+			 vo.setName(rs.getString("name"));
+			 vo.setId(rs.getString("id"));
+			 vo.setPw(rs.getString("pw"));
+			 vo.setPhonenumber(rs.getString("phone_number"));
+			 vo.setAddress(rs.getString("email_address"));
+			 }
+		 }	catch (SQLException e) {
 		 	 System.out.println("SQL 오류 : " + e.getMessage());
-		 	 // e. printStackTrace();
- }		 finally {
-	 		 rsClose();
- 			}
-	 		return vo;	
- 		}
+		 	 }	finally {
+		 		 rsClose();
+		 		 }
+	 return vo;	
+	 }
 
  			// 회원 가입 처리 
  			public int setHoiwonInput(HoiwonVO vo) {
  				int res = 0;
  				try {
- 					sql	=	"insert into hoiwon values (default,?,?,?,?)";
+ 					sql	=	"insert into hoiwon values (default,?,?,?,?,?)";
  					pstmt	=	conn.prepareStatement(sql);
- 					pstmt.setString(1, vo.getId());
- 					pstmt.setString(2, vo.getPw());
- 					pstmt.setInt(3, vo.getPhonenumber());
- 					pstmt.setString(4, vo.getAddress());
+ 					pstmt.setString(1, vo.getName());
+ 					pstmt.setString(2, vo.getId());
+ 					pstmt.setString(3, vo.getPw());
+ 					pstmt.setString(4, vo.getPhonenumber());
+ 					pstmt.setString(5, vo.getAddress());
  					res	=	pstmt.executeUpdate();
  				} catch (SQLException e) {
  					System.out.println("SQL 오류 : " + e.getMessage());
@@ -100,11 +100,13 @@ public class HoiwonDAO {
  			public int setHoiwonUpdate(HoiwonVO vo) {
  				int res = 0;
  				try {
- 					sql	=	"update hoiwon set pw=?, phonenumber=?, address=? where id	= ";
- 					pstmt.setString(1, vo.getId());
+ 					sql	=	"update hoiwon set name=?, pw=?, phone_number=?, email_address=? where id	= ?";
+ 					pstmt = conn.prepareStatement(sql);
+ 					pstmt.setString(1, vo.getName());
  					pstmt.setString(2, vo.getPw());
- 					pstmt.setInt(3, vo.getPhonenumber());
+ 					pstmt.setString(3, vo.getPhonenumber());
  					pstmt.setString(4, vo.getAddress());
+ 					pstmt.setString(5, vo.getId());
  					res	=	pstmt.executeUpdate();
  				} catch (SQLException e) {
  					System.out.println("SQL 오류 : " + e.getMessage());
